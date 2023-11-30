@@ -1,6 +1,6 @@
-import { Header, NavBar} from "./components"
+import { Header, NavBar} from "../components"
 
-const page = () => {
+const Pesan = () => {
   return (
     <>
       <Header/>
@@ -14,4 +14,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Pesan
