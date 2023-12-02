@@ -2,8 +2,8 @@ import React from 'react'
 
 const Header = () => {
   return (
-    <div className="h-[76px] z-20">
-        <div className="h-fit w-screen fixed">
+    <div className="h-[76px] z-20 relative">
+        <div className="h-fit w-screen fixed top-0">
             <div className= " bg-[#FFFCDB] flex justify-between">
                 <a href="/" className="box pl-4 py-2">
                     <img src="/images/logo.png" className="h-16"></img>

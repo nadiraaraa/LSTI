@@ -1,8 +1,10 @@
-"use client;"
+"use client";
 import { Header, NavBar, Back, Title, MenuCard} from "../components"
 import {useState} from 'react';
 
 const Pesan = () => {
+  const [multiple, setMultiple] = useState(false)
+
   return (
     <>
       <Header/>
@@ -10,24 +12,33 @@ const Pesan = () => {
       <div className=" z-0">
         <img src="/images/menu_bg.png" className="w-screen"></img>
       </div>
-        <div className="overflow-y-auto bg-[#6E7B43] z-20">
-            <div className='mt-2 min-h-fit'>
-            <Title text = "Profil"/>
+      {/* <div className="h-44 z-0 relative"></div> */}
+        <div className=" bg-[#6E7B43] z-20 pb-24">
+            <div className='relative mt-[-20px] min-h-fit '>
+              <Title text = "Pesan Menu"/>
             </div>
             <div>
-                <div className="px-4 py-6 grid grid-cols-2 text-black">
+                <div className="px-4 text-md pt-6 grid grid-cols-2 text-black">
                     <p className='text-left'>Pesanan kamar #5207</p>
-                    <p className='text-right'>Pesan &gt;1&nbsp;
-                    <input type="checkbox" id="multiple" name="multiple" value="multiple" className="p-2"/>
-                    </p>
+                    <div>
+                      <p className='text-right'>Pesan &gt;1&nbsp;&nbsp;
+                      <input type="checkbox" onChange={()=>setMultiple(!multiple)} id="multiple" name="multiple" value="multiple" className="p-2"/>
+                      </p>
+                    </div>
                 </div>
             </div>
-            <MenuCard/>
-            <MenuCard/>
-            <MenuCard/>
-            <div className="h-96"></div>
+            <MenuCard multiple={multiple} date="23 Nov"/>
+            <MenuCard multiple={multiple} date="23 Nov"/>
+            <MenuCard multiple={multiple} date="23 Nov"/>
+            <div className="w-full fixed contents-center text-center top-[540px] m-auto">
+              {multiple ?
+              <button className='text-xl font-bold bg-[#DE521E] p-4 rounded-lg border-1 border-black h-fit text-center'>Pesan Sekarang</button>
+              : <></>}
+            </div>
+            
         </div>
-      <NavBar/>
+        <NavBar/>
+      
     </>
   )
 }
