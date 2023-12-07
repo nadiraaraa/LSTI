@@ -14,7 +14,7 @@ const Header: FC<HeaderIn> = ({role}) => {
                     {/* {role == "user" ? */}
                     <div className="box bg-[#DE521E] rounded-md px-4 py-2 h-fit right-4 align-middle text-center">
                     <p className='text-white'>
-                        Your Quota: ##
+                        Kuota Tersisa: ##
                     </p>
                     </div>
                     {/* :
