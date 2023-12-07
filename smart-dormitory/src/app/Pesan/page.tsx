@@ -7,7 +7,7 @@ const Pesan = () => {
 
   return (
     <>
-      <Header/>
+      <Header role="user"/>
       <Back/>
       <div className=" z-0">
         <img src="/images/menu_bg.png" className="w-screen"></img>
@@ -32,12 +32,14 @@ const Pesan = () => {
             <MenuCard multiple={multiple} date="23 Nov"/>
             <div className="w-full fixed contents-center text-center top-[540px] m-auto">
               {multiple ?
-              <button className='text-xl font-bold bg-[#DE521E] p-4 rounded-lg border-1 border-black h-fit text-center'>Pesan Sekarang</button>
+              <form action="/Pesan/Submitted">
+                <button className='text-xl font-bold bg-[#DE521E] p-4 rounded-lg border-1 border-black h-fit text-center'>Pesan Sekarang</button>
+              </form>
               : <></>}
             </div>
             
         </div>
-        <NavBar/>
+        <NavBar role="user" view="menu"/>
       
     </>
   )

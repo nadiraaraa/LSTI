@@ -21,11 +21,22 @@ const Menu: FC<MenuIn> = ({time, img, title, desc, ordered, multiple}) => {
             <p className='font-bold'>{title}</p>
             <p>{desc}</p>
         </div>
-        <div className=''>
-            {multiple ? 
-            <input type="checkbox"  id="multipleMenu" name="multipleMenu" value="multipleMenu" className="relative mt-10 scale-150"/>
-            : <button className='bg-[#DE521E] p-2 rounded-lg border-1 border-black h-fit align-middle'>Pesan Sekarang</button> 
-             }
+        <div className='w-16 my-auto'>
+            {ordered ?
+            <div className='text-xs p-1 rounded-lg border border-[#DE521E] h-fit align-middle text-center'>Sudah Dipesan</div>
+            : <div>
+                {multiple ? 
+                <div className='px-6'>
+                  <input type="checkbox"  id="multipleMenu" name="multipleMenu" value="multipleMenu" className="relative scale-150"/>
+                </div>
+                : <form action="/Pesan/Submitted">
+                    <button className='text-xs bg-[#DE521E] p-1 rounded-lg  h-fit align-middle'>Pesan Sekarang</button> 
+                  </form>
+                } 
+                <div/>
+              
+            </div>
+        }
           </div>
     </div>
   )

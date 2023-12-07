@@ -3,7 +3,7 @@ import { Header, NavBar, Title} from "../components"
 const Pesan = () => {
   return (
     <>
-      <Header/>
+      <Header role="caterer"/>
         <div className="overflow-y-auto bg-[#6E7B43] mb-18 min-h-screen">
           <div className="pt-8 py-4">
             <Title text="Lihat Pesanan" />
@@ -43,7 +43,7 @@ const Pesan = () => {
           </div>
         </div>
         
-      <NavBar/>
+      <NavBar role="caterer" view="kuota"/>
     </>
   )
 }

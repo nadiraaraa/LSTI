@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { FC } from 'react'
 
-const Header = () => {
+interface HeaderIn {
+    role: string;
+}
+
+const Header: FC<HeaderIn> = ({role}) => {
   return (
     <div className="h-[76px] z-20 relative">
         <div className="h-fit w-screen fixed top-0">
@@ -9,11 +13,16 @@ const Header = () => {
                     <img src="/images/logo.png" className="h-16"></img>
                 </a>
                 <div className="pr-4 flex align-middle pt-4">
+                    {role == "user" ?
                     <div className="box bg-[#DE521E] rounded-md px-4 py-2 h-fit right-4 align-middle text-center">
-                        <p className='text-white'>
-                            Your Quota: ##
-                        </p>
+                    <p className='text-white'>
+                        Your Quota: ##
+                    </p>
                     </div>
+                    :
+                    <div></div>
+                    }
+                    
                 </div>
             </div>
             

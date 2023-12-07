@@ -1,15 +1,14 @@
 "use client";
 import React from 'react';
-import {Header, NavBar, Back, Title, Button} from '../components';
+import {Header, NavBar, Back, Title, Button} from '../../components';
 import { redirect } from 'next/navigation';
 
 const Profil = () => {
 
   return (
     <>
-      <Header/>
-        <div className="overflow-y-auto bg-[#6E7B43] min-h-full">
-          <Back/>
+      <Header role="caterer"/>
+        <div className=" bg-[#6E7B43] min-h-full">
           <div className='pt-12'>
             <Title text = "Profil"/>
           </div>
@@ -38,7 +37,7 @@ const Profil = () => {
           </div>
           <div className="h-40"></div>
         </div>
-      <NavBar/>
+      <NavBar role="caterer" view="profil"/>
     </>
   )
 }
