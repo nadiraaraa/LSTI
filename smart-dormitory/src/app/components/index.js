@@ -6,3 +6,4 @@ export {default as Title} from './Title';
 export {default as Menu} from './Menu';
 export {default as MenuCard} from './MenuCard';
 export {default as Paket} from './Paket';
+export {default as Sidebar} from './Sidebar';

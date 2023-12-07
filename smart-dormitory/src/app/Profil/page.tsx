@@ -1,19 +1,24 @@
 "use client";
 import React from 'react';
-import {Header, NavBar, Back, Title, Button} from '../../components';
+import {Header, Sidebar, Back, Title, Button} from '../components';
 import { redirect } from 'next/navigation';
 
-const Profil = () => {
+const ProfilU = () => {
 
   return (
     <>
-      <Header role="caterer"/>
-        <div className=" bg-[#6E7B43] min-h-full">
+    <div className="flex flex-col h-full md:flex-row md:overflow-hidden">
+      <div className="fixed flex z-40 md:relative md:flex-none md:w-[17rem]">
+        <Sidebar role="user"/>
+      </div>
+      <div className="md:flex-grow  w-full bg-[#6E7B43]">
+        <Header role="user"/>
+        <Back/>
           <div className='pt-12'>
             <Title text = "Profil"/>
           </div>
           
-          <div className="bg-[#FFFCDB] content-center m-4 rounded-lg py-8">
+          <div className="bg-[#FFFCDB] content-center my-4 mx-4 md:mx-36 rounded-lg py-8">
             <div className="px-12 py-2 grid grid-cols-2 text-black">
                 <p className='text-left font-bold'>Nama</p>
                 <p className='text-right'>Nadira</p>
@@ -36,10 +41,10 @@ const Profil = () => {
               </div>
           </div>
           <div className="h-40"></div>
-        </div>
-      <NavBar role="caterer" view="profil"/>
-    </>
+          </div>
+          </div>
+  </>
   )
 }
 
-export default Profil
+export default ProfilU

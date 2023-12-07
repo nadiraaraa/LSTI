@@ -1,5 +1,5 @@
 "use client";
-import { Header, NavBar, Back, Title, MenuCard} from "../components"
+import { Header, Sidebar, Back, Title, MenuCard} from "../components"
 import {useState} from 'react';
 
 const Pesan = () => {
@@ -7,14 +7,19 @@ const Pesan = () => {
 
   return (
     <>
-      <Header role="user"/>
-      <Back/>
-      <div className=" z-0">
-        <img src="/images/menu_bg.png" className="w-screen"></img>
+        <div className="flex flex-col h-full md:flex-row md:overflow-hidden">
+      <div className="fixed flex z-40 md:relative md:flex-none md:w-[17rem]">
+        <Sidebar role="user"/>
       </div>
+      <div className="md:flex-grow  w-full ">
+        <Header role="user"/>
+        <Back/>
+        <div className="md:hidden">
+          <img src="/images/menu_bg.png" className="w-screen"></img>
+        </div>
       {/* <div className="h-44 z-0 relative"></div> */}
         <div className=" bg-[#6E7B43] z-20 pb-24">
-            <div className='relative mt-[-20px] min-h-fit '>
+            <div className='relative mt-[-20px] min-h-fit md:mt-0 md:pt-12'>
               <Title text = "Pesan Menu"/>
             </div>
             <div>
@@ -27,10 +32,15 @@ const Pesan = () => {
                     </div>
                 </div>
             </div>
-            <MenuCard multiple={multiple} date="23 Nov"/>
-            <MenuCard multiple={multiple} date="23 Nov"/>
-            <MenuCard multiple={multiple} date="23 Nov"/>
-            <div className="w-full fixed contents-center text-center top-[540px] m-auto">
+            <div className="lg:grid lg:grid-cols-2 w-full content-center mb-12">
+              <MenuCard multiple={multiple} date="23 Nov"/>
+              <MenuCard multiple={multiple} date="23 Nov"/>
+              <MenuCard multiple={multiple} date="23 Nov"/>
+              <MenuCard multiple={multiple} date="23 Nov"/>
+              <MenuCard multiple={multiple} date="23 Nov"/>
+              <MenuCard multiple={multiple} date="23 Nov"/>
+            </div>
+            <div className="w-full sticky bottom-20 contents-center text-center top-[540px] m-auto">
               {multiple ?
               <form action="/Pesan/Submitted">
                 <button className='text-xl font-bold bg-[#DE521E] p-4 rounded-lg border-1 border-black h-fit text-center'>Pesan Sekarang</button>
@@ -39,7 +49,8 @@ const Pesan = () => {
             </div>
             
         </div>
-        <NavBar role="user" view="menu"/>
+      </div>
+    </div>
       
     </>
   )

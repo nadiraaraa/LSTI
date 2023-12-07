@@ -28,7 +28,7 @@ const Masuk = () => {
         <img src="/images/logo.png" className="w-36"></img>
       </div>
       <p className="font-bold text-xl text-center">Log In to Smart Dormitory</p>
-      <form action="/LihatPesanan" className="p-8 text-lg">
+      <form action="/LihatPesanan" className="p-8 text-lg md:px-80">
         <div className="p-2">
           <label htmlFor="email" className="block" >Email</label>
           <input type="email" id="email" defaultValue={data.username} onChange={handleInputChange}
