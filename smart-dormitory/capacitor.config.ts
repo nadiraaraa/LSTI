@@ -5,7 +5,9 @@ const config: CapacitorConfig = {
   appName: 'smart-dormitory',
   webDir: 'out',
   server: {
-    androidScheme: 'https'
+    androidScheme: 'https',
+    url: 'http://192.168.1.7:3000',
+    cleartext: true
   }
 };
 
