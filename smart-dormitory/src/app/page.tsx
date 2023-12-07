@@ -1,5 +1,4 @@
 import { Header, NavBar, Sidebar} from "./components"
-// import {bg} from "public/images/home_bg.png"
 
 const page = () => {
   return (
@@ -10,7 +9,7 @@ const page = () => {
         </div>
         <div className="md:flex-grow  w-full ">
           <Header role="user"/>
-          <div className="bg-cover bg-[url('/images/home_bg.png')] h-full w-full">
+          <div className="bg-cover bg-[url('/images/home_bg.png')] lg:bg-repeat lg:bg-[#313131] h-full w-full">
             <div className="align-middle pt-44 h-screen">
               <div className='bg-[#6E7B43] mx-6 md:mx-16 ld:mx-48  p-4 px-6 rounded-lg text-white text-center '>
                   <p className='py-4 text-xl font-bold'>Catering Smart Dormitory</p>

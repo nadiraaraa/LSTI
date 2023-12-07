@@ -85,7 +85,7 @@ const Sidebar: FC<SidebarProps> = ({ role }) => {
               <a
                 href="/"
                 className={`flex items-center p-2  hover:bg-[#323F07] hover:text-white group ${
-                  menu == "class" ? "bg-gray-700" : ""
+                  menu == "" ? "bg-gray-700" : ""
                 }`}
               >
                 <img src="/images/home.png" alt="class" className="w-7 h-7" />
@@ -126,6 +126,21 @@ const Sidebar: FC<SidebarProps> = ({ role }) => {
             </li>
             <li>
               <a
+                href="/orderHistory"
+                className={`flex items-center p-2  hover:bg-[#323F07] hover:text-white group ${
+                  menu == "history" ? "bg-gray-700" : ""
+                }`}
+              >
+                <img
+                  src="/images/history.png"
+                  alt="history"
+                  className="w-7 h-7"
+                />
+                <span className="flex-1 ml-6 whitespace-nowrap">Sejarah Pesanan</span>
+              </a>
+            </li>
+            <li>
+              <a
                 href="/Profil"
                 className={`flex items-center p-2  hover:bg-[#323F07] hover:text-white group ${
                   menu == "profil" ? "bg-gray-700" : ""
@@ -148,17 +163,8 @@ const Sidebar: FC<SidebarProps> = ({ role }) => {
                 className="w-32 h-32 mx-auto"
               />
             </li>
-            <li>
-              <a
-                href="/"
-                className={`flex items-center p-2  hover:bg-[#323F07] hover:text-white group ${
-                  menu == "home" ? "bg-gray-700" : ""
-                }`}
-              >
-                <img src="/images/home.png" alt="home" className="w-7 h-7" />
-                <span className="ml-6">Home</span>
-              </a>
-            </li>
+            <p className="text-[#323F07] text-center font-bold">SMART DORMITORY</p>
+
             <li>
               <a
                 href="/LihatPesanan"

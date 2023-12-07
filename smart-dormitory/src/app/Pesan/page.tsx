@@ -23,7 +23,7 @@ const Pesan = () => {
               <Title text = "Pesan Menu"/>
             </div>
             <div>
-                <div className="px-4 text-md pt-6 grid grid-cols-2 text-black">
+                <div className="px-4 text-md pt-6 grid grid-cols-2 text-black md:mx-20">
                     <p className='text-left'>Pesanan kamar #5207</p>
                     <div>
                       <p className='text-right'>Pesan &gt;1&nbsp;&nbsp;
