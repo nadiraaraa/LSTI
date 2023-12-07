@@ -1,6 +1,6 @@
 "use client";
 import { ChangeEvent, useState } from "react";
-import { Header, NavBar, Title} from "../components"
+import { Header, Sidebar, Title} from "../components"
 
 interface MenuIn{
   imgpath: string;
@@ -28,12 +28,17 @@ const TambahMenu = () => {
 
   return (
     <>
+    <div className="flex flex-col h-full md:flex-row md:overflow-hidden">
+      <div className="fixed flex z-40 md:relative md:flex-none md:w-[17rem]">
+        <Sidebar role="caterer"/>
+      </div>
+      <div className="md:flex-grow  w-full bg-[#6E7B43]">
       <Header role ="caterer"/>
         <div className="overflow-y-auto bg-[#6E7B43] mb-18">
           <div className="pt-8">
             <Title text="Tambah Menu" />
           </div>
-          <form action="/TambahMenu/Submitted" className="p-4 text-md bg-[#FFFCDB] m-6 rounded-lg">
+          <form action="/TambahMenu/Submitted" className="p-4 text-md bg-[#FFFCDB] m-6 rounded-lg md:mx-36">
             <div className="p-2">
               <label htmlFor="date" className="block" >Tanggal</label>
               <input type="date" id="date"  onChange={handleInputChange}
@@ -68,13 +73,15 @@ const TambahMenu = () => {
               required accept=".jpg,.png"/>
             </div>
             <div className="text-center pt-6 py-2">
-            <button className='text-lg  bg-[#DE521E] py-2 px-8 rounded-lg border-1 border-black h-fit text-center'>TAMBAH MENU</button> 
+            <button className='text-lg  bg-[#DE521E] py-2 px-8 rounded-lg  font-bold border-2 border-black h-fit text-center'>TAMBAH MENU</button> 
             </div>
           </form>
           <div className="h-12"></div>
         </div>
-      <NavBar role="caterer" view="menu"/>
-    </>
+        </div>
+        </div>
+  </>
+
   )
 }
 

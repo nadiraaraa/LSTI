@@ -8,7 +8,7 @@ interface PaketIn{
 
 const Paket: FC<PaketIn>= ({kuota, harga}) => {
   return (
-    <div className='bg-[#FFFCDB] m-4 p-4 px-6 rounded-lg'>
+    <div className='bg-[#FFFCDB] m-4 md:mx-44 p-4 px-6 rounded-lg'>
         <p className='font-bold'>Paket {kuota} kuota</p>
         <p>Harga: Rp{harga}</p>
         <form action="/Kuota/Submitted" className='text-center pt-4'>
