@@ -94,7 +94,7 @@ const Sidebar: FC<SidebarProps> = ({ role }) => {
             </li>
             <li>
               <a
-                href="/Kuota"
+                href="/package"
                 className={`flex items-center p-2  hover:bg-[#323F07] hover:text-white group ${
                   menu == "kuota" ? "bg-gray-700" : ""
                 }`}
@@ -111,7 +111,7 @@ const Sidebar: FC<SidebarProps> = ({ role }) => {
             </li>
             <li>
               <a
-                href="/Pesan"
+                href="/order"
                 className={`flex items-center p-2  hover:bg-[#323F07] hover:text-white group ${
                   menu == "pesan" ? "bg-gray-700" : ""
                 }`}
@@ -126,7 +126,7 @@ const Sidebar: FC<SidebarProps> = ({ role }) => {
             </li>
             <li>
               <a
-                href="/orderHistory"
+                href="/orderHistory/userId"
                 className={`flex items-center p-2  hover:bg-[#323F07] hover:text-white group ${
                   menu == "history" ? "bg-gray-700" : ""
                 }`}
@@ -141,7 +141,7 @@ const Sidebar: FC<SidebarProps> = ({ role }) => {
             </li>
             <li>
               <a
-                href="/Profil"
+                href="/profile"
                 className={`flex items-center p-2  hover:bg-[#323F07] hover:text-white group ${
                   menu == "profil" ? "bg-gray-700" : ""
                 }`}
@@ -167,7 +167,7 @@ const Sidebar: FC<SidebarProps> = ({ role }) => {
 
             <li>
               <a
-                href="/LihatPesanan"
+                href="/orderHistory"
                 className={`flex items-center p-2  hover:bg-[#323F07] hover:text-white group ${
                   menu == "lihatPesanan" ? "bg-gray-700" : ""
                 }`}
@@ -184,7 +184,7 @@ const Sidebar: FC<SidebarProps> = ({ role }) => {
             </li>
             <li>
               <a
-                href="/TambahMenu"
+                href="/menu"
                 className={`flex items-center p-2  hover:bg-[#323F07] hover:text-white group ${
                   menu == "tambahMenu" ? "bg-gray-700" : ""
                 }`}
@@ -199,7 +199,7 @@ const Sidebar: FC<SidebarProps> = ({ role }) => {
             </li>
             <li>
               <a
-                href="/Profil"
+                href="/profile"
                 className={`flex items-center p-2  hover:bg-[#323F07] hover:text-white group ${
                   menu == "profil" ? "bg-gray-700" : ""
                 }`}
