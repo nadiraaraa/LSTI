@@ -45,15 +45,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     const cookies = new Cookies();
     const token = cookies.get("token");
     if (!token) {
-      window.location.href = "/auth";
+      // window.location.href = "/auth";
     } else {
       setTokenPayload(cookies.get("payload"));
     }
   }, []);
   return (
     <>
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning={true}>
       <title>SMART DORMITORY</title>
+      <body>
       <link rel="icon" href="/images/favicon.ico"></link>
       {/* <body className={inter.className}>{children}</body> */}
       {usePathname() == "/auth" ?
@@ -68,6 +69,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </div>
       </div>
       }
+      </body>
+      
     </html>
     </>
   );

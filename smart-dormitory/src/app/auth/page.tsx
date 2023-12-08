@@ -28,10 +28,13 @@ const Masuk = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("prevented")
     // setLoadingSubmit(true);
     try {
-      const res = await axios.post("http://localhost:8080//users", data);
+      const res = await axios.post("http://localhost:8080/auth", data, {
+        headers: {
+          'Access-Control-Allow-Origin': true,
+        },
+      });
       console.log(res.data);
       if (res.data.status === 200) {
         console.log(res.data);
