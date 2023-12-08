@@ -1,5 +1,8 @@
 "use client";
-import { ChangeEvent, useState } from "react";
+
+import React, { useState, useLayoutEffect, ChangeEvent } from "react";
+import axios from "axios";
+import Cookies from "universal-cookie";
 
 interface DataMasuk {
   username: string;
@@ -12,14 +15,67 @@ const Masuk = () => {
     password: ""
   })
 
-  const handleInputChange = (
-    event: ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    const { name, value } = event.target;
-    // setData({ ...{name}, [name]: value });    
+  const [emailError, setEmailError] = useState<boolean>(false);
+  const [passwordError, setPasswordError] = useState<boolean>(false);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setData({ ...data, [name]: value });  
   };
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // setLoadingSubmit(true);
+    try {
+      const res = await axios.post("/api/auth/", data);
+      console.log(res.data);
+      if (res.data.status === 200) {
+        console.log(res.data);
+        const cookies = new Cookies();
+        if (res.data.rememberMe) {
+          cookies.set("token", res.data.token, {
+            path: "/",
+            expires: new Date(Date.now() + 12096e5),
+          });
+          cookies.set("payload", res.data.payload, {
+            path: "/",
+            expires: new Date(Date.now() + 12096e5),
+          });
+        } else {
+          cookies.set("token", res.data.token, { path: "/" });
+          cookies.set("payload", res.data.payload, { path: "/" });
+        }
+        setEmailError(false);
+        setPasswordError(false);
+        if (res.data.payload.role === "user") {
+          window.location.href = "/";
+        } else {
+          window.location.href = "/menu";
+        }
+      } else if (res.data.status === 404) {
+        setEmailError(true);
+        setPasswordError(false);
+      } else if (res.data.status === 401) {
+        setPasswordError(true);
+        setEmailError(false);
+      }
+    } catch (err) {
+      console.log(err);
+    } finally {
+      // setLoadingSubmit(false);
+    }
+  };
 
+  // Check if user is already logged in
+  useLayoutEffect(() => {
+    const cookies = new Cookies();
+    const token = cookies.get("token");
+    if (token) {
+      window.location.href = "/";
+    } else {
+      // setLoading(false);
+    }
+  }, []);
 
   return (
     <>
@@ -34,12 +90,18 @@ const Masuk = () => {
           <input type="email" id="email" defaultValue={data.username} onChange={handleInputChange}
           className="border border-[#DE521E] rounded-md w-full"
           required></input>
+          <i className="text-red-700">
+                  {emailError && "Invalid email address"}
+                </i>
         </div>
         <div className="p-2">
           <label htmlFor="password" className="block" >Password</label>
           <input type="password" id="password" defaultValue={data.password} onChange={handleInputChange}
           className="border border-[#DE521E] rounded-md w-full"
           required></input>
+          <i className="text-red-700">
+                  {passwordError && "Password incorrect"}
+                </i>
         </div>
         <div className="text-center pt-12">
          <button className='text-lg font-bold bg-[#DE521E] py-2 px-8 rounded-lg border-1 border-black h-fit text-center'>LOG IN</button> 

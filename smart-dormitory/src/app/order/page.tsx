@@ -7,12 +7,6 @@ const Pesan = () => {
 
   return (
     <>
-        <div className="flex flex-col h-full md:flex-row md:overflow-hidden">
-      <div className="fixed flex z-40 md:relative md:flex-none md:w-[17rem]">
-        <Sidebar role="user"/>
-      </div>
-      <div className="md:flex-grow  w-full ">
-        <Header role="user"/>
         <Back/>
         <div className="md:hidden">
           <img src="/images/menu_bg.png" className="w-screen"></img>
@@ -49,9 +43,6 @@ const Pesan = () => {
             </div>
             
         </div>
-      </div>
-    </div>
-      
     </>
   )
 }

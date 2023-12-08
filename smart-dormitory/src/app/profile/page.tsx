@@ -7,12 +7,7 @@ const ProfilU = () => {
 
   return (
     <>
-    <div className="flex flex-col h-full md:flex-row md:overflow-hidden">
-      <div className="fixed flex z-40 md:relative md:flex-none md:w-[17rem]">
-        <Sidebar role="user"/>
-      </div>
-      <div className="md:flex-grow  w-full bg-[#6E7B43]">
-        <Header role="user"/>
+
         <Back/>
           <div className='pt-12'>
             <Title text = "Profil"/>
@@ -41,8 +36,6 @@ const ProfilU = () => {
               </div>
           </div>
           <div className="h-40"></div>
-          </div>
-          </div>
   </>
   )
 }

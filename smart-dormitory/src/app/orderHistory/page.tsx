@@ -3,12 +3,6 @@ import { Header, Sidebar, Title} from "../components"
 const Pesan = () => {
   return (
     <>
-    <div className="flex flex-col h-full md:flex-row md:overflow-hidden">
-      <div className="fixed flex z-40 md:relative md:flex-none md:w-[17rem]">
-        <Sidebar role="caterer"/>
-      </div>
-      <div className="md:flex-grow  w-full bg-[#6E7B43]">
-        <Header role="user"/>
         <div className=" bg-[#6E7B43] mb-18 min-h-screen">
           <div className="pt-8 py-4">
             <Title text="Lihat Pesanan" />
@@ -47,8 +41,6 @@ const Pesan = () => {
               </tbody>
             </table>
           </div>
-        </div>
-        </div>
         </div>
   </>
   )
