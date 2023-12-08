@@ -24,13 +24,13 @@ Prototype yang dikembangkan pada Smart Dormitory berfokus pada proses bisnis pen
 
 ## Implementasi Method Back-End
 Berikut adalah fungsionalitas yang terdapat pada back-end dan method untuk melakukannya
--**1. Melihat Paket :** GET/package
--**2. Membeli Paket/Menambah Kuota :** PATCH/user/quota/:id
--**3. Melakukan Pembayaran :** POST/payment
--**4. Membuat Menu :** POST/menu
--**5. Melihat Menu :** GET/menu
--**6. Melakukan Pemesanan :** POST/order
--**7. Menerima Data Pemesanan :** GET/order
+**1. Melihat Paket :** GET/package  
+**2. Membeli Paket/Menambah Kuota :** PATCH/user/quota/:id  
+**3. Melakukan Pembayaran :** POST/payment  
+**4. Membuat Menu :** POST/menu  
+**5. Melihat Menu :** GET/menu  
+**6. Melakukan Pemesanan :** POST/order  
+**7. Menerima Data Pemesanan :** GET/order
 
 
 
