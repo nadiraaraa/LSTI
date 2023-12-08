@@ -3,6 +3,8 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 
+import dotenv from 'dotenv';
+dotenv.config();
 
 import React, { useEffect, useState } from "react";
 import Sidebar from "./components/Sidebar";
@@ -30,7 +32,7 @@ interface TokenPayload {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const [tokenPayload, setTokenPayload] = useState<TokenPayload>({
     userId: null,
-    role: "user",
+    role: "",
     roomId: null,
     quota: null
   });
@@ -43,7 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     const cookies = new Cookies();
     const token = cookies.get("token");
     if (!token) {
-      // window.location.href = "/auth";
+      window.location.href = "/auth";
     } else {
       setTokenPayload(cookies.get("payload"));
     }
