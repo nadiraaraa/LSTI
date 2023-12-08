@@ -34,8 +34,8 @@ const Sidebar: FC<SidebarProps> = ({ role }) => {
   const path = usePathname();
 
   // get menu
-  const menu = "Halaman Utama";
-  // const menu = path.split("/")[2];
+  // const menu = "Halaman Utama";
+  const menu = path.split("/")[1];
 
   return (
     <div className="z-40">
@@ -86,7 +86,7 @@ const Sidebar: FC<SidebarProps> = ({ role }) => {
               <a
                 href="/"
                 className={`flex items-center p-2  hover:bg-[#323F07] hover:text-white group ${
-                  menu == "Halaman Utama" ? "bg-[#CAEE8C]" : ""
+                  menu == "" ? "bg-[#CAEE8C]" : ""
                 }`}
               >
                 <img src="/images/home.png" alt="class" className="w-7 h-7" />
@@ -97,7 +97,7 @@ const Sidebar: FC<SidebarProps> = ({ role }) => {
               <a
                 href="/package"
                 className={`flex items-center p-2  hover:bg-[#323F07] hover:text-white group ${
-                  menu == "kuota" ? "bg-[#CAEE8C]" : ""
+                  menu == "package" ? "bg-[#CAEE8C]" : ""
                 }`}
               >
                 <img
@@ -114,7 +114,7 @@ const Sidebar: FC<SidebarProps> = ({ role }) => {
               <a
                 href="/order"
                 className={`flex items-center p-2  hover:bg-[#323F07] hover:text-white group ${
-                  menu == "pesan" ? "bg-[#CAEE8C]" : ""
+                  menu == "order" ? "bg-[#CAEE8C]" : ""
                 }`}
               >
                 <img
@@ -129,7 +129,7 @@ const Sidebar: FC<SidebarProps> = ({ role }) => {
               <a
                 href="/orderHistory/userId"
                 className={`flex items-center p-2  hover:bg-[#323F07] hover:text-white group ${
-                  menu == "history" ? "bg-[#CAEE8C]" : ""
+                  menu == "orderHistory" ? "bg-[#CAEE8C]" : ""
                 }`}
               >
                 <img
@@ -144,7 +144,7 @@ const Sidebar: FC<SidebarProps> = ({ role }) => {
               <a
                 href="/profile"
                 className={`flex items-center p-2  hover:bg-[#323F07] hover:text-white group ${
-                  menu == "profil" ? "bg-[#CAEE8C]" : ""
+                  menu == "profile" ? "bg-[#CAEE8C]" : ""
                 }`}
               >
                 <img
@@ -170,7 +170,7 @@ const Sidebar: FC<SidebarProps> = ({ role }) => {
               <a
                 href="/orderHistory"
                 className={`flex items-center p-2  hover:bg-[#323F07] hover:text-white group ${
-                  menu == "lihatPesanan" ? "bg-[#CAEE8C]" : ""
+                  menu == "orderHistory" ? "bg-[#CAEE8C]" : ""
                 }`}
               >
                 <img
@@ -187,7 +187,7 @@ const Sidebar: FC<SidebarProps> = ({ role }) => {
               <a
                 href="/menu"
                 className={`flex items-center p-2  hover:bg-[#323F07] hover:text-white group ${
-                  menu == "tambahMenu" ? "bg-[#CAEE8C]" : ""
+                  menu == "menu" ? "bg-[#CAEE8C]" : ""
                 }`}
               >
                 <img
@@ -202,7 +202,7 @@ const Sidebar: FC<SidebarProps> = ({ role }) => {
               <a
                 href="/profile"
                 className={`flex items-center p-2  hover:bg-[#323F07] hover:text-white group ${
-                  menu == "profil" ? "bg-[#CAEE8C]" : ""
+                  menu == "profile" ? "bg-[#CAEE8C]" : ""
                 }`}
               >
                 <img

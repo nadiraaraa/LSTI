@@ -6,12 +6,6 @@ const page = () => {
   const [role, setRole] = useState("user")
   return (
     <>
-      <div className="flex flex-col h-full md:flex-row md:overflow-hidden">
-        <div className="fixed flex z-40 md:relative md:flex-none md:w-[17rem]">
-          <Sidebar role="user"/>
-        </div>
-        <div className="md:flex-grow  w-full ">
-          <Header role="user"/>
           <div className="bg-cover bg-[url('/images/home_bg.png')] lg:bg-repeat lg:bg-[#313131] h-full w-full">
             <div className="align-middle pt-44 h-screen">
               <div className='bg-[#6E7B43] mx-6 md:mx-16 ld:mx-48  p-4 px-6 rounded-lg text-white text-center '>
@@ -31,8 +25,6 @@ const page = () => {
             </div>
             
           </div>
-        </div>
-      </div>
       
       {/* <NavBar role="user" view="home"/> */}
     </>
