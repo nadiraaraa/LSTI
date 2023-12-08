@@ -22,4 +22,41 @@ Smart Dormitory merupakan sebuah sistem layanan yang dibuat dengan tujuan untuk 
 Prototype yang dikembangkan pada Smart Dormitory berfokus pada proses bisnis pengelolaan layanan tambahan, yaitu pada pengelolaan sistem catering yang ditawarkan oleh pihak asrama dalam bentuk sebuah website. Dengan menggunakan website Smart Dormitory, penghuni asrama dapat melakukan pemesanan paket catering yang diinginkan, memilih menu catering, serta melakukan proses pembayaran.
 </div>
 
+## Implementasi Method Back-End
+<div style="text-align: justify">
+Berikut adalah fungsionalitas yang terdapat pada back-end dan method untuk melakukannya
+**1. Melihat Paket :** GET/package
+**2. Membeli Paket/Menambah Kuota :** PATCH/user/quota/:id
+**3. Melakukan Pembayaran : ** POST/payment
+**4. Membuat Menu : ** POST/menu
+**5. Melihat Menu : ** GET/menu
+**6. Melakukan Pemesanan : ** POST/order
+**7. Menerima Data Pemesanan : ** GET/order
+</div>
+
+
 ## Cara Menjalankan Prototype Smart Dormitory
+<div style="text-align: justify">
+Pertama, download project github ini pada local machine untuk mencobanya
+Clone git dengan code berikut
+
+```bash
+  git clone https://github.com/nadiraaraa/LSTI.git
+```
+
+Jika sudah, tujukan terminal ke directory project
+```bash
+  cd Path/to/smart-dormitory
+```
+
+Untuk menjalankan web secara local, ketik code berikut
+```bash
+  npm i
+```
+Lanjutkan dengan code berikut
+```bash
+  npm run dev
+```
+</div>
+
+## Fungsionalitas yang Terdapat Pada Prototype 
