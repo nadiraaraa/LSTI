@@ -2,7 +2,7 @@
 
 ## About Smart Dormitory
 
-Smart Dormitory merupakan sebuah sistem layanan yang dibuat dengan tujuan untuk memudahkan proses pengelolaan dan administrasi asrama. Layanan yang disediakan oleh asrama adalah pengelolaan penerimaan penghuni baru, pengelolaan kontrak dan keuangan, serta pengelolaan layanan tambahan asrama.
+Smart Dormitory merupakan sebuah sistem layanan yang dibuat dengan tujuan untuk memudahkan proses pengelolaan dan administrasi asrama. Layanan yang disediakan oleh asrama adalah **pengelolaan penerimaan penghuni baru, pengelolaan kontrak dan keuangan, serta pengelolaan layanan tambahan asrama**. Layanan ini dimulai dari penerimaan penghuni baru melalui promosi yang dilakukan oleh pihak pemasaran Dormitory. Calon penghuni kemudian melewati proses aplikasi, seleksi dan onboarding. Setelah melalui proses penerimaan, calon penghuni melakukan penandatanganan kontrak sewa dan pembayaran uang deposit. Calon penghuni kemudian resmi menjadi penghuni, dan akan mendapatkan berbagai layanan Dormitory hingga mereka menyelesaikan masa sewa mereka.
 
 ## Anggota Kelompok 10
 
