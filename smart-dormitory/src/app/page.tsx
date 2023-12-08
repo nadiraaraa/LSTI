@@ -1,6 +1,9 @@
+"use client";
+import { useState } from "react"
 import { Header, NavBar, Sidebar} from "./components"
 
 const page = () => {
+  const [role, setRole] = useState("user")
   return (
     <>
       <div className="flex flex-col h-full md:flex-row md:overflow-hidden">
@@ -15,8 +18,14 @@ const page = () => {
                   <p className='py-4 text-xl font-bold'>Catering Smart Dormitory</p>
                   <p>Selamat datang di aplikasi Catering Smart Dormitory, Nama! Pesan menu catering yang akan diantar ke pintu kamarmu sesuai jadwal, dan gunakan kuota untuk tiap pesanan.</p>
                   <div className='text-center pt-4 px-6 justify-center flex'>
-                    <a href="/Kuota" className=' border-2 border-white py-1 px-4 rounded-lg mx-2 ld:mx-8'>Tambah Kuota</a>
-                    <a href="/Pesan" className=' bg-[#DE521E] border-2 border-white py-1 px-4 rounded-lg  mx-2 ld:mx-8'>Pesan Menu</a>
+                    {role=="user" ?
+                    <>
+                    
+                    <a href="/package" className=' border-2 border-white py-1 px-4 rounded-lg mx-2 ld:mx-8'>Tambah Kuota</a>
+                    <a href="/order" className=' bg-[#DE521E] border-2 border-white py-1 px-4 rounded-lg  mx-2 ld:mx-8'>Pesan Menu</a>
+                    </>
+                    :  <a href="/auth" className=' bg-[#DE521E] border-2 border-white py-1 px-4 rounded-lg  mx-2 ld:mx-8'>Log In</a>
+                    }
                   </div>
               </div>
             </div>
