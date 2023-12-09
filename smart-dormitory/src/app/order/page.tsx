@@ -24,9 +24,46 @@ interface OrderOut{
 
 const Pesan = () => {
   const [multiple, setMultiple] = useState(false)
-  const [form, setForm] = useState<OrderOut>();
+
+  const [form, setForm] = useState<OrderOut>({
+    userId: 0,
+    name: "",
+    roomId: 0,
+    phone: "",
+    menuId: []
+  });
+
   const [data, setData] = useState<MenuIn[]>([]);
   var today = new Date();
+
+  useEffect(() => {
+    const fetchData = async (token: string) => {
+      try {
+        // const res = await axios.get(`http://localhost:8080/order?date=2023/12/17&category=${form.category}`, {
+          const res = await axios.get(`http://localhost:8080/menu`, {
+            headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setData(res.data);
+        console.log(res.data);
+      } catch (err) {
+        // toast.error("Error fetching data");
+        console.log(err);
+      } finally {
+        // setLoading(false);
+      }
+    };
+    
+    const Cookies = new Cookie();
+    const role = Cookies.get("payload").role;
+    if (role !== "user") {
+      window.location.href = "/auth";
+    } else {
+      const token: string = Cookies.get("token");
+      fetchData(token);
+    }
+  }, []);
 
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -47,7 +84,7 @@ const Pesan = () => {
       // setTimeout(toast.error("Something went wrong"), 100);
     } finally {
       setTimeout(() => {
-        window.location.href = "packages/Submitted";
+        window.location.href = "order/submitted";
       }, 1000); // Delayed by 2000 milliseconds (2 seconds)
     }
   };
@@ -66,7 +103,7 @@ const Pesan = () => {
             </div>
             <div>
                 <div className="px-4 text-md pt-6 grid grid-cols-2 text-black md:mx-20">
-                    <p className='text-left'>Pesanan kamar #5207</p>
+                    <p className='text-left'>Pilihan Menu yang Tersedia</p>
                     <div>
                       <p className='text-right'>Pesan &gt;1&nbsp;&nbsp;
                       <input type="checkbox" onChange={()=>setMultiple(!multiple)} id="multiple" name="multiple" value="multiple" className="p-2"/>
@@ -78,11 +115,13 @@ const Pesan = () => {
               {data.map((item, idx) =>
                 {
                   return (
+                    
                     <div key={idx} className='bg-[#FFFCDB]  rounded-lg px-2 pt-2 w-fit md:mx-auto m-4'>
-                      {item.date > today ?
+                      {/* {item.date > today ? */}
+                      <p  className=' text-[#DE521E] text-xl font-bold pl-1 pt-1'>{item.date.toString()}</p>
                       <Menu category={item.category} img={item.imgpath} title={item.name} desc={item.description} ordered={false} multiple={multiple}/>
-                        : <></>
-                    }
+                        {/* : <></>
+                    } */}
                     </div>
                   )
                 })}
@@ -100,6 +139,7 @@ const Pesan = () => {
               </form>
               : <></>}
             </div>
+            <div className="h-screen"></div>
             
         </div>
     </>
