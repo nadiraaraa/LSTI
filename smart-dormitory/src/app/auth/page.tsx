@@ -30,11 +30,7 @@ const Masuk = () => {
     e.preventDefault();
     // setLoadingSubmit(true);
     try {
-      const res = await axios.post("http://localhost:8080/auth", data, {
-        headers: {
-          'Access-Control-Allow-Origin': true,
-        },
-      });
+      const res = await axios.post("/api/auth", data);
       console.log(res.data);
       if (res.data.status === 200) {
         console.log(res.data);
