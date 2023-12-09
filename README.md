@@ -23,7 +23,7 @@ Prototype yang dikembangkan pada Smart Dormitory berfokus pada proses bisnis pen
 </div>
 
 ## Implementasi Method Back-End
-Berikut adalah fungsionalitas yang terdapat pada back-end dan method untuk melakukannya
+Berikut adalah fungsionalitas yang terdapat pada back-end dan method untuk melakukannya  
 **1. Melihat Paket :** GET/package  
 **2. Membeli Paket/Menambah Kuota :** PATCH/user/quota/:id  
 **3. Melakukan Pembayaran :** POST/payment  
@@ -36,7 +36,9 @@ Berikut adalah fungsionalitas yang terdapat pada back-end dan method untuk melak
 
 ## Cara Menjalankan Prototype Smart Dormitory
 <div style="text-align: justify">
-Pertama, download project github ini pada local machine untuk mencobanya
+
+**Cara Menjalankan Prototype dari IDE**  
+Pertama, download project github ini pada local machine untuk mencobanya  
 Clone git dengan code berikut
 
 ```bash
