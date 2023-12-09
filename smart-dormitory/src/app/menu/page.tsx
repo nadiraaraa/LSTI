@@ -28,12 +28,6 @@ const TambahMenu = () => {
 
   return (
     <>
-    <div className="flex flex-col h-full md:flex-row md:overflow-hidden">
-      <div className="fixed flex z-40 md:relative md:flex-none md:w-[17rem]">
-        <Sidebar role="caterer"/>
-      </div>
-      <div className="md:flex-grow  w-full bg-[#6E7B43]">
-      <Header role ="caterer"/>
         <div className="overflow-y-auto bg-[#6E7B43] mb-18">
           <div className="pt-8">
             <Title text="Tambah Menu" />
@@ -77,8 +71,6 @@ const TambahMenu = () => {
             </div>
           </form>
           <div className="h-12"></div>
-        </div>
-        </div>
         </div>
   </>
 
