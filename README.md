@@ -57,7 +57,32 @@ Untuk menjalankan web secara local, ketik code berikut
 Lanjutkan dengan code berikut
 ```bash
   npm run dev
-```
+```  
+
+**Cara Menjalankan Prototype dari Link Website**  
+Klik link berikut untuk menuju website  
+```bash
+  https://smart-dormitory-lsti-k10.vercel.app/
+```  
 </div>
 
+
 ## Fungsionalitas yang Terdapat Pada Prototype 
+<div style="text-align: justify">
+
+Berikut adalah Fungsionalitas dan tampilan pada website  
+**1. Penghuni akan dibawa ke tampilan utama dashboard sebelum melakukan pemesanan kuota katering dan menu**  
+![dashboard website](image/dashboard.jpg)  
+  
+**2. Penghuni dapat memilih kuota makan yang akan dibeli**  
+![memilih kuota makan](image/kuota.jpg)  
+
+**3. Setelah membeli kuota, penghuni dapat memilih menu yang akan dikirim pada tanggal sesuai pilihannya**  
+![memilih menu makan](image/pesanmenu.jpg)  
+  
+**4. Penghuni dapat melihat riwayat pemesanan menu**    
+![riwayat pemesanan](image/history.jpg)  
+
+**5. Penghuni dapat mengelola akun website layanan cateringnya**  
+![halaman profile](image/profile.jpg)  
+</div>
