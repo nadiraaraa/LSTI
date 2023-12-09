@@ -14,19 +14,20 @@ interface packageDataType {
 }
 
 interface TokenPayload {
-  userId: number;
+  id: string;
+  name: string;
+  email: string;
+  quota: string;
   role: string;
-  roomId: number;
-  quota: number;
-
 }
 
 const Package = () => {
   const [tokenPayload, setTokenPayload] = useState<TokenPayload>({
-    userId: 0,
-    role: "",
-    roomId: 0,
-    quota: 0
+    id: "",
+    name: "",
+    email: "",
+    quota: "",
+    role: ""
   });
 
 
@@ -78,7 +79,7 @@ const Package = () => {
               {
                 return (
                   <div key={idx}>
-                    <Paket id={tokenPayload.userId} inKuota={tokenPayload.quota} value={item.id} kuota={item.quota} harga={item.price} desc={item.description}/>
+                    <Paket id={tokenPayload.id} inKuota={Number(tokenPayload.quota)} value={item.id} kuota={item.quota} harga={item.price} desc={item.description}/>
                   </div>
                 )
               })}

@@ -3,25 +3,33 @@ import { Header, Sidebar, Title} from "../components"
 import {useState, useEffect, ChangeEvent, useLayoutEffect} from 'react';
 import Cookie from "universal-cookie";
 import axios from "axios";
+import Cookies from "universal-cookie";
 
 interface OrderIn{
   id : Number,
   userId : Number,
   name: String,
-  roomId : Number,
+  roomId : Number[],
   phone : String,
   menuId : Number
 }
 
 interface Form{
-  date: Date | undefined,
+  date: Date,
   category: String
 }
 
 const Pesan = () => {
-  const [orders, setOrders] = useState<OrderIn[]>([]);
+  const [orders, setOrders] = useState<OrderIn[]>([]
+    // id : 0,
+    // userId : 0,
+    // name: "",
+    // roomId : [],
+    // phone : "",
+    // menuId : 0,
+  );
   const [form, setForm] = useState<Form>({
-    date: undefined,
+    date: new Date(),
     category : "pagi"
   });
 
@@ -37,10 +45,16 @@ const Pesan = () => {
   };
 
   useLayoutEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async (token: string) => {
       try {
-        const res = await axios.get(`/api/order?date=${form.date}&category=${form.category}`, {});
+        // const res = await axios.get(`http://localhost:8080/order?date=2023/12/17&category=${form.category}`, {
+          const res = await axios.get(`http://localhost:8080/order`, {
+            headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         setOrders(res.data);
+        console.log(res.data);
       } catch (err) {
         // toast.error("Error fetching data");
         console.log(err);
@@ -48,7 +62,15 @@ const Pesan = () => {
         // setLoading(false);
       }
     };
-    fetchData();
+    
+    const Cookie = new Cookies();
+    const role = Cookie.get("payload").role;
+    if (role !== "admin") {
+      window.location.href = "/auth";
+    } else {
+      const token: string = Cookie.get("token");
+      fetchData(token);
+    }
   }, []);
 
   
@@ -58,41 +80,60 @@ const Pesan = () => {
           <div className="pt-8 py-4">
             <Title text="Lihat Pesanan" />
           </div>
-          <form className="flex justify-between  my-4 mx-4 md:mx-36">
+          {/* <form className="flex justify-between  my-4 mx-4 md:mx-36">
             <div className="">
                 <input type="date" id="date"
                 className="border border-[#DE521E] rounded-md w-full"
-                required onChange={handleInputChange}></input>
+                required name="date" defaultValue="2023/12/17" onChange={handleInputChange}></input>
               </div>
               <div className="">
                 <select id="kategori"
                 className="border border-[#DE521E] rounded-md w-full"
-                required onChange={handleInputChange}>
+                required name="category" onChange={handleInputChange}>
                 <option value="pagi" className=" text-sm">Pagi</option>
                 <option value="malam" className=" text-sm">Malam</option>
                 </select>
               </div>
-          </form>
+          </form> */}
           <div className="bg-[#FFFCDB] p-4 m-4 mt-2 rounded-lg  text-left my-4 mx-4 md:mx-36">
-            <img src="/images/menus/menu_1.png" className="p-4"/>
+            <table className="w-full">
+              <thead>
+                <tr>
+                  <th>menuId</th>
+                  <th>userId</th>
+                  <th>name</th>
+                </tr>
+              </thead>
+              <tbody className="font-light">
+                {orders.map((item,idx) =>
+                  <tr key={idx}>
+                    <th className="font-normal">{item.menuId.toString()}</th>
+                    <th className="font-normal">{item.roomId.toString()}</th>
+                    <th className="font-normal">{item.name}</th>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+
+            {/* <img src="/images/menus/menu_1.png" className="p-4"/>
             <table className="">
               <tbody>
                 <tr>
                   <th className="pr-3 md:w-60">Nama</th>
-                  <th className="font-normal">Nama ABC</th>
+                  <th className="font-normal">{orders.name}</th>
                 </tr>
                 <tr>
                   <th className="pr-3">Deskripsi</th>
-                  <th className="font-normal">Deskripsi ABC</th>
+                  <th className="font-normal">{orders.menuId.toString()}</th>
                 </tr>
                 <tr>
                   <th className="pr-3">Nomor Kamar</th>
                   <th className="font-normal">
-            {orders.map((item, idx) =>
+            {orders.roomId.map((item, idx) =>
               {
                 return (
                   <div key={idx}>
-                    <span>{item.roomId.toString()}&nbsp;</span>
+                    <span>{item.toString()}&nbsp;</span>
                   </div>
                 )
               })}
@@ -100,7 +141,7 @@ const Pesan = () => {
                  </th>
                 </tr>
               </tbody>
-            </table>
+            </table> */}
           </div>
         </div>
   </>

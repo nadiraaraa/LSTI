@@ -5,7 +5,7 @@ import toast from 'react-hot-toast'
 // import Pesan from '../Kuota/page'
 
 interface PaketIn{
-    id: number;
+    id: string;
     inKuota: number;
     value: number;
     kuota: number;
@@ -14,22 +14,28 @@ interface PaketIn{
 }
 
 const Paket: FC<PaketIn>= ({id, inKuota, value, kuota, desc, harga}) => {
+  console.log(kuota);
+  console.log(inKuota);
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     try {
       event.preventDefault();
+      console.log("trying");
       const Cookies = new Cookie();
       const token = Cookies.get("token");
-      const res = await axios.patch(`http://localhost:8080/user/quota/${id}`, inKuota+kuota, {
+      const res = await axios.patch(`http://localhost:8080/user/quota/${id}`, (inKuota+kuota), {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
       if (res.status === 200) {
         toast.success("Kuota berhasil ditambahkan");
+        Cookies.set('quota', inKuota+kuota);
+
+        setTimeout(() => {
+          window.location.href = "package/Submitted";
+        }, 10000); // Delayed by 2000 milliseconds (2 seconds)
       }
-      setTimeout(() => {
-        window.location.href = "package/Submitted";
-      }, 1000); // Delayed by 2000 milliseconds (2 seconds)
+      
     } catch (err) {
       console.log(err);
       toast.error("Terdapat kesalahan");

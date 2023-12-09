@@ -1,12 +1,15 @@
 "use client";
 import { ChangeEvent, useState } from "react";
 import { Header, Sidebar, Title} from "../components"
+import {toast} from 'react-hot-toast'
+import Cookie from "universal-cookie";
+import axios from "axios";
 
 interface MenuIn{
   imgpath: string;
   name: string;
   description: string;
-  date: Date | null;
+  date: string;
   category: string;
 }
 
@@ -15,15 +18,49 @@ const TambahMenu = () => {
     imgpath: "",
     name: "",
     description: "",
-    date: null,
-    category: "",
+    date: "",
+    category: "pagi",
   })
 
   const handleInputChange = (
     event: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = event.target;
-    // setData({ ...{name}, [name]: value });    
+    // if (name=="date"){
+    //   setData({ ...data, date: formatDate() });
+    // } else {
+    setData({ ...data, [name]: value }); 
+    // }
+    console.log(data);   
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    try {
+      event.preventDefault();
+
+      // const formData = new FormData();
+      // formData.append("imgpath", data.imgpath);
+
+
+      const Cookies = new Cookie();
+      const token = Cookies.get("token");
+      const res = await axios.post(`http://localhost:8080/menu`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (res.status === 200) {
+        toast.success("Data updated successfully");
+        setTimeout(() => {
+          window.location.href = "/menu/submitted";
+        }, 1000); // Delayed by 2000 milliseconds (2 seconds)
+      }
+    } catch (err) {
+      console.log(err);
+      setTimeout(toast.error("Something went wrong"), 100);
+    } finally {
+      
+    }
   };
 
   return (
@@ -32,16 +69,16 @@ const TambahMenu = () => {
           <div className="pt-8">
             <Title text="Tambah Menu" />
           </div>
-          <form action="/TambahMenu/Submitted" className="p-4 text-md bg-[#FFFCDB] m-6 rounded-lg md:mx-36">
+          <form onSubmit={handleSubmit} className="p-4 text-md bg-[#FFFCDB] m-6 rounded-lg md:mx-36">
             <div className="p-2">
               <label htmlFor="date" className="block" >Tanggal</label>
-              <input type="date" id="date"  onChange={handleInputChange}
+              <input name="date"  type="date" id="date"  onChange={handleInputChange}
               className="border border-[#DE521E] rounded-md w-full"
               required/>
             </div>
             <div className="p-2">
               <label htmlFor="kategori" className="block" >Kategori</label>
-              <select id="kategori" defaultValue={data.category} onChange={handleInputChange}
+              <select name="category" id="kategori" defaultValue={data.category} onChange={handleInputChange}
               className="border border-[#DE521E] rounded-md w-full"
               required>
               <option value="pagi" className=" text-sm">Pagi</option>
@@ -50,19 +87,19 @@ const TambahMenu = () => {
             </div>
             <div className="p-2">
               <label htmlFor="judul" className="block" >Judul Menu</label>
-              <input type="text" id="judul" defaultValue={data.name} onChange={handleInputChange}
+              <input name="name" type="text" id="judul" defaultValue={data.name} onChange={handleInputChange}
               className="border border-[#DE521E] rounded-md w-full"
               required/>
             </div>
             <div className="p-2">
               <label htmlFor="deskripsi" className="block" >Deskripsi</label>
-              <input type="text" id="deskripsi" defaultValue={data.description} onChange={handleInputChange}
+              <input name="description" type="text" id="deskripsi" defaultValue={data.description} onChange={handleInputChange}
               className="border border-[#DE521E] rounded-md w-full"
               required/>
             </div>
             <div className="p-2">
               <label htmlFor="imgpath" className="block" >Upload Foto</label>
-              <input type="file" id="imgpath" defaultValue={data.imgpath} onChange={handleInputChange}
+              <input name="imgpath" type="file" id="imgpath" defaultValue={data.imgpath} onChange={handleInputChange}
               className="border border-[#DE521E] rounded-md w-full"
               required accept=".jpg,.png"/>
             </div>
@@ -77,4 +114,16 @@ const TambahMenu = () => {
   )
 }
 
-export default TambahMenu
+export default TambahMenu;
+
+export const formatDate = (date: Date | null): string => {
+  if (!date) return "";
+
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1; // JavaScript months are 0-based.
+  const day = date.getDate();
+
+  return `${year}-${month.toString().padStart(2, "0")}-${day
+    .toString()
+    .padStart(2, "0")}`;
+};

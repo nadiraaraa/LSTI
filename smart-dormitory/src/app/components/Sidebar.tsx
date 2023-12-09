@@ -5,9 +5,10 @@ import { usePathname } from "next/navigation";
 
 interface SidebarProps {
   role: string;
+  userId: string;
 }
 
-const Sidebar: FC<SidebarProps> = ({ role }) => {
+const Sidebar: FC<SidebarProps> = ({ role, userId }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   // Ref for the sidebar
@@ -127,7 +128,7 @@ const Sidebar: FC<SidebarProps> = ({ role }) => {
             </li>
             <li>
               <a
-                href="/orderHistory/userId"
+                href={`/orderHistory/${userId}`}
                 className={`flex items-center p-2  hover:bg-[#323F07] hover:text-white group ${
                   menu == "orderHistory" ? "bg-[#CAEE8C]" : ""
                 }`}

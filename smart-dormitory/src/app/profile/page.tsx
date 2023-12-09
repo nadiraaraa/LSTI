@@ -1,15 +1,37 @@
 "use client";
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Header, Sidebar, Back, Title, Button} from '../components';
 import { redirect } from 'next/navigation';
 import Cookies from 'universal-cookie';
 
+interface TokenPayload {
+  id: string;
+  name: string;
+  email: string;
+  quota: string;
+  role: string;
+
+}
+
 const ProfilU = () => {
-  const Cookie = new Cookies();
-  const role = Cookie.get("payload").role;
-  const id = Cookie.get("payload").id;
-  const name = Cookie.get("payload").name;
-  const email = Cookie.get("payload").email;
+  const [tokenPayload, setTokenPayload] = useState<TokenPayload>({
+    id: "",
+    name: "",
+    email: "",
+    quota: "",
+    role: ""
+  });
+
+  useEffect(() => {
+    const cookies = new Cookies();
+    const token = cookies.get("token");
+    if (!token) {
+      window.location.href = "/auth";
+    } else {
+      setTokenPayload(cookies.get("payload"));
+      console.log(cookies.get("payload"));
+    }
+  }, []);
 
   const handleSignOut = () => {
     const cookies = new Cookies();
@@ -29,15 +51,19 @@ const ProfilU = () => {
           <div className="bg-[#FFFCDB] content-center my-4 mx-4 md:mx-36 rounded-lg py-8">
             <div className="px-12 py-2 grid grid-cols-2 text-black">
                 <p className='text-left font-bold'>Nama</p>
-                <p className='text-right'>{name}</p>
+                <p className='text-right'>{tokenPayload.name}</p>
             </div>
             <div className="px-12 py-2 grid grid-cols-2 text-black">
                 <p className='text-left font-bold'>Id Kamar</p>
-                <p className='text-right'>#{id}</p>
+                <p className='text-right'>#{tokenPayload.id}</p>
             </div>
             <div className="px-12 py-2 grid grid-cols-2 text-black">
                 <p className='text-left font-bold'>Email</p>
-                <p className='text-right break-words'>{email}</p>
+                <p className='text-right break-words'>{tokenPayload.email}</p>
+            </div>
+            <div className="px-12 py-2 grid grid-cols-2 text-black">
+                <p className='text-left font-bold'>Role</p>
+                <p className='text-right break-words'>{tokenPayload.role}</p>
             </div>
             <div className='text-center pt-24 p-4 pb-0'>
               <form action="/auth">
