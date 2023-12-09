@@ -97,7 +97,7 @@ const Pesan = () => {
           <img  alt="" src="/images/menu_bg.png" className="w-screen"></img>
         </div>
       {/* <div className="h-44 z-0 relative"></div> */}
-        <div className=" bg-[#6E7B43] z-20 pb-24">
+        <div className=" bg-[#6E7B43] z-20 pb-24 min-h-screen">
             <div className='relative mt-[-20px] min-h-fit md:mt-0 md:pt-12'>
               <Title text = "Pesan Menu"/>
             </div>
@@ -139,7 +139,6 @@ const Pesan = () => {
               </form>
               : <></>}
             </div>
-            <div className="h-screen"></div>
             
         </div>
     </>

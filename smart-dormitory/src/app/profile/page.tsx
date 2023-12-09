@@ -42,7 +42,7 @@ const ProfilU = () => {
 
   return (
     <>
-      <div className='bg-[#6E7B43]'>
+      <div className='bg-[#6E7B43] min-h-screen'>
         <Back/>
           <div className='pt-12'>
             <Title text = "Profil"/>
@@ -74,7 +74,6 @@ const ProfilU = () => {
               </form>
               </div>
           </div>
-          <div className="h-screen"></div>
           </div>
   </>
   )
