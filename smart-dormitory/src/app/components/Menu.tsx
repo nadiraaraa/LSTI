@@ -1,7 +1,7 @@
 import React, {FC} from 'react'
 
 interface MenuIn{
-    time: string;
+    category: string;
     img: string;
     title: string;
     desc: string;
@@ -9,14 +9,14 @@ interface MenuIn{
     multiple: boolean;
 }
 
-const Menu: FC<MenuIn> = ({time, img, title, desc, ordered, multiple}) => {
+const Menu: FC<MenuIn> = ({category, img, title, desc, ordered, multiple}) => {
   return (
     <div className='flex p-3 py-4 text-sm'>
       <div className='w-2 pt-12 pr-3'>
-        <p className="rotate-[-90deg] font-bold text-center text-[#DE521E]">{time}</p>
+        <p className="rotate-[-90deg] font-bold text-center text-[#DE521E]">{category}</p>
       </div>
 
-        <img src={img} className='w-36 '></img>
+        <img  alt="" src={img} className='w-36 '></img>
         <div className='px-2'>
             <p className='font-bold'>{title}</p>
             <p>{desc}</p>

@@ -2,9 +2,10 @@ import React, { FC } from 'react'
 
 interface HeaderIn {
     role: string;
+    quota: string;
 }
 
-const Header: FC<HeaderIn> = ({role}) => {
+const Header: FC<HeaderIn> = ({role, quota}) => {
   return (
     <div className="z-20 sticky top-0 w-full">
         <div className="h-fit top-0">
@@ -14,7 +15,7 @@ const Header: FC<HeaderIn> = ({role}) => {
                     {/* {role == "user" ? */}
                     <div className="box bg-[#DE521E] rounded-md px-4 py-2 h-fit right-4 align-middle text-center">
                     <p className='text-white'>
-                        Your Quota: ##
+                        Kuota Anda: {quota}
                     </p>
                     </div>
                     {/* :

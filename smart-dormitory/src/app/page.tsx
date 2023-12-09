@@ -2,8 +2,8 @@
 import { useState } from "react"
 import { Header, NavBar, Sidebar} from "./components"
 
-const page = () => {
-  const [role, setRole] = useState("user")
+const Page = () => {
+  const [role, setRole] = useState("user");
   return (
     <>
           <div className="bg-cover bg-[url('/images/home_bg.png')] lg:bg-repeat lg:bg-[#313131] h-full w-full">
@@ -31,4 +31,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

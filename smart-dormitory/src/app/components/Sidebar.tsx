@@ -5,9 +5,10 @@ import { usePathname } from "next/navigation";
 
 interface SidebarProps {
   role: string;
+  userId: string;
 }
 
-const Sidebar: FC<SidebarProps> = ({ role }) => {
+const Sidebar: FC<SidebarProps> = ({ role, userId }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   // Ref for the sidebar
@@ -72,7 +73,7 @@ const Sidebar: FC<SidebarProps> = ({ role }) => {
         aria-label="Sidebar"
       >
         <div className="h-full px-8 py-4 overflow-y-auto bg-[#FFFCDB] text-black pt-12">
-          <ul className={`${role === "caterer" ? "hidden" : ""} space-y-4 font-medium`}>
+          <ul className={`${role === "admin" ? "hidden" : ""} space-y-4 font-medium`}>
             <li>
               <img
                 src="/images/logo.png"
@@ -127,7 +128,7 @@ const Sidebar: FC<SidebarProps> = ({ role }) => {
             </li>
             <li>
               <a
-                href="/orderHistory/userId"
+                href={`/orderHistory/${userId}`}
                 className={`flex items-center p-2  hover:bg-[#323F07] hover:text-white group ${
                   menu == "orderHistory" ? "bg-[#CAEE8C]" : ""
                 }`}
