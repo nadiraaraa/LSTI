@@ -28,7 +28,7 @@ const TambahMenu = () => {
 
   return (
     <>
-        <div className="overflow-y-auto bg-[#6E7B43] mb-18">
+        <div className="bg-[#6E7B43] mb-18 h-full">
           <div className="pt-8">
             <Title text="Tambah Menu" />
           </div>
@@ -70,7 +70,7 @@ const TambahMenu = () => {
             <button className='text-lg  bg-[#DE521E] py-2 px-8 rounded-lg  font-bold border-2 border-black h-fit text-center'>TAMBAH MENU</button> 
             </div>
           </form>
-          <div className="h-12"></div>
+          <div className="h-screen"></div>
         </div>
   </>
 

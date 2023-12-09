@@ -1,37 +1,40 @@
 import axios from 'axios';
 import React, {FC, useState} from 'react'
 import Cookie from 'universal-cookie';
+import toast from 'react-hot-toast'
 // import Pesan from '../Kuota/page'
 
 interface PaketIn{
-    key: number;
+    id: number;
+    inKuota: number;
+    value: number;
     kuota: number;
     desc: String;
     harga: number;
 }
 
-const Paket: FC<PaketIn>= ({kuota, desc, harga}) => {
-  const [id, setId] = useState(0);
+const Paket: FC<PaketIn>= ({id, inKuota, value, kuota, desc, harga}) => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     try {
       event.preventDefault();
       const Cookies = new Cookie();
       const token = Cookies.get("token");
-      const res = await axios.patch(`/api/user/quota/${id}`, id, {
+      const res = await axios.patch(`http://localhost:8080/user/quota/${id}`, inKuota+kuota, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
       if (res.status === 200) {
-        // toast.success("Data updated successfully");
+        toast.success("Kuota berhasil ditambahkan");
       }
+      setTimeout(() => {
+        window.location.href = "package/Submitted";
+      }, 1000); // Delayed by 2000 milliseconds (2 seconds)
     } catch (err) {
       console.log(err);
-      // setTimeout(toast.error("Something went wrong"), 100);
+      toast.error("Terdapat kesalahan");
     } finally {
-      setTimeout(() => {
-        window.location.href = "packages/Submitted";
-      }, 1000); // Delayed by 2000 milliseconds (2 seconds)
+
     }
   };
   

@@ -47,13 +47,13 @@ const id = path.split("/")[2];
         });
         setRawData(res.data);
 
-        rawData.forEach((x, i) => {
-          const res = await axios.get(`/api/orderHistory/${id}`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-        })
+        // rawData.forEach((x, i) => {
+        //   const res = await axios.get(`/api/orderHistory/${id}`, {
+        //     headers: {
+        //       Authorization: `Bearer ${token}`,
+        //     },
+        //   });
+        // })
       } catch (err) {
         // toast.error("Error fetching data");
         console.log(err);
@@ -78,7 +78,7 @@ const id = path.split("/")[2];
                 {
                   return (
                     <div key={idx}>
-                      <Sejarah date={data.date} time="pagi" img={data.img} title={data.name} desc={data.description} />
+                      {/* <Sejarah date={data.date} time="pagi" img={data.img} title={data.name} desc={data.description} /> */}
                     </div>
                   )
                 })}

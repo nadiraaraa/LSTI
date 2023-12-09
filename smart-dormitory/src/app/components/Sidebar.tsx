@@ -72,7 +72,7 @@ const Sidebar: FC<SidebarProps> = ({ role }) => {
         aria-label="Sidebar"
       >
         <div className="h-full px-8 py-4 overflow-y-auto bg-[#FFFCDB] text-black pt-12">
-          <ul className={`${role === "caterer" ? "hidden" : ""} space-y-4 font-medium`}>
+          <ul className={`${role === "admin" ? "hidden" : ""} space-y-4 font-medium`}>
             <li>
               <img
                 src="/images/logo.png"

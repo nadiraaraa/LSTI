@@ -27,19 +27,21 @@ const inter = Inter({ subsets: ['latin'] });
 
 
 interface TokenPayload {
-  userId: Number | null;
+  id: string;
+  name: string;
+  email: string;
+  quota: string;
   role: string;
-  roomId: Number | null;
-  quota: Number | null;
 
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const [tokenPayload, setTokenPayload] = useState<TokenPayload>({
-    userId: null,
-    role: "",
-    roomId: null,
-    quota: null
+    id: "",
+    name: "",
+    email: "",
+    quota: "",
+    role: ""
   });
 
   //Change Password state
@@ -49,12 +51,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   useEffect(() => {
     const cookies = new Cookies();
     const token = cookies.get("token");
-    if (!token) {
-      // window.location.href = "/auth";
+    if (!token && path!=="/auth") {
+      window.location.href = "/auth";
     } else {
       setTokenPayload(cookies.get("payload"));
+      console.log(tokenPayload);
+      console.log(cookies.get("payload"));
     }
   }, []);
+
+
   return (
     <>
     <html lang="en" suppressHydrationWarning={true}>
@@ -63,13 +69,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <link rel="icon" href="/images/favicon.ico"></link>
       {/* <body className={inter.className}>{children}</body> */}
       {usePathname() == "/auth" ?
-      <div>{children}</div> :
+      <div>{children}</div> 
+      :
       <div className="flex flex-col h-full md:flex-row md:overflow-hidden">
         <div className="fixed flex z-40 md:relative md:flex-none md:w-[17rem]">
-          <Sidebar role="user"/>
+          <Sidebar role={tokenPayload.role}/>
         </div>
         <div className="md:flex-grow  w-full ">
-          <Header role="user"/>
+          <Header role={tokenPayload.role} quota={tokenPayload.quota}/>
           <div>{children}</div>
         </div>
       </div>

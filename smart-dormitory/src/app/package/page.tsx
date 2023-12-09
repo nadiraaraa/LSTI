@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react"
+import { useEffect, useLayoutEffect, useState } from "react"
 import { Header, Sidebar, Title, Paket, Back} from "../components"
 import Cookies from "universal-cookie";
 import axios from "axios";
@@ -13,28 +13,35 @@ interface packageDataType {
   quota: number;
 }
 
+interface TokenPayload {
+  userId: number;
+  role: string;
+  roomId: number;
+  quota: number;
+
+}
+
 const Package = () => {
-  // const [dipesan, setDipesan] = useState(false)
-  // const pageData: string[] = [
-  //   "id",
-  //   "name",
-  //   "price",
-  //   "description",
-  //   "quota"
-  // ];
+  const [tokenPayload, setTokenPayload] = useState<TokenPayload>({
+    userId: 0,
+    role: "",
+    roomId: 0,
+    quota: 0
+  });
+
 
   const [data, setData] = useState<packageDataType[]>([]);
-
-  // const [data, setData] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchData = async (token: string) => {
       try {
-        const res = await axios.get("/api/packages", {
+        const res = await axios.get("http://localhost:8080/package", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
+        console.log(res.data);
+
         if (res.status === 401) {
           window.location.href = "/auth";
         } else {
@@ -45,14 +52,16 @@ const Package = () => {
       }
     };
 
-    // const Cookie = new Cookies();
-    // const role = Cookie.get("payload").role;
-    // if (role === "Admin") {
-    //   window.location.href = "/unauthorized";
-    // } else {
-    //   const token: string = Cookie.get("token");
-    //   fetchData(token);
-    // }
+    const Cookie = new Cookies();
+    const role = Cookie.get("payload").role;
+    if (role !== "user") {
+      window.location.href = "/auth";
+    } else {
+      const token: string = Cookie.get("token");
+      fetchData(token);
+      setTokenPayload(Cookie.get("payload"));
+      console.log(tokenPayload);
+    }
   }, []);
 
   return (
@@ -69,7 +78,7 @@ const Package = () => {
               {
                 return (
                   <div key={idx}>
-                    <Paket key={idx} kuota={item.quota} harga={item.price} desc={item.description}/>
+                    <Paket id={tokenPayload.userId} inKuota={tokenPayload.quota} value={item.id} kuota={item.quota} harga={item.price} desc={item.description}/>
                   </div>
                 )
               })}

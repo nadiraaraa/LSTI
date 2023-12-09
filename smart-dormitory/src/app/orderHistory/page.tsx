@@ -25,6 +25,18 @@ const Pesan = () => {
     category : "pagi"
   });
 
+    
+    
+  const handleInputChange = async (
+    event: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = event.target;
+    setForm({ ...form, [name]: value });    
+
+      // fetchData();
+  };
+
+  useLayoutEffect(() => {
     const fetchData = async () => {
       try {
         const res = await axios.get(`/api/order?date=${form.date}&category=${form.category}`, {});
@@ -36,17 +48,6 @@ const Pesan = () => {
         // setLoading(false);
       }
     };
-    
-  const handleInputChange = async (
-    event: ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    const { name, value } = event.target;
-    setForm({ ...form, [name]: value });    
-
-      fetchData();
-  };
-
-  useLayoutEffect(() => {
     fetchData();
   }, []);
 
