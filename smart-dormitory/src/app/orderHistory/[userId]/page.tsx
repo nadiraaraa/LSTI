@@ -4,7 +4,7 @@ import {FC} from "react";
 import { Header, Sidebar, Title, Back} from "../../components"
 import Sejarah from "../../components/Sejarah";
 import { Baskervville } from "next/font/google";
-import Cookie from "universal-cookie";
+import Cookies from "universal-cookie";
 import axios from "axios";
 import { usePathname } from "next/navigation";
 
@@ -31,15 +31,15 @@ const History = () => {
   const [rawData, setRawData] = useState<historyIn[]>([])
   const [data, setData] = useState<MenuIn[]>([])
 
-// Fetching Data
-const path = usePathname();
-const id = path.split("/")[2];
+  // Fetching Data
+  const path = usePathname();
+  const id = path.split("/")[2];
 
   useLayoutEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async (token: string) => {
       try {
-        const Cookies = new Cookie();
-        const token = Cookies.get("token");
+        const Cookie = new Cookies();
+        const token = Cookie.get("token");
         const res = await axios.get(`/api/orderHistory/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -61,14 +61,47 @@ const id = path.split("/")[2];
         // setLoading(false);
       }
     };
-    fetchData();
+    const Cookie = new Cookies();
+    const role = Cookie.get("payload").role;
+    if (role !== "user") {
+      window.location.href = "/auth";
+    } else {
+      const token: string = Cookie.get("token");
+      fetchData(token);
+    }
   }, []);
+
 
 
   return (
     <>
+      <div className=" bg-[#6E7B43] mb-18 min-h-screen">
+          <div className="pt-8 py-4">
+            <Title text="Lihat Pesanan" />
+          </div>
         <Back/>
-        <div className=" bg-[#6E7B43] mb-18 min-h-screen">
+
+        <div className="bg-[#FFFCDB] p-4 m-4 mt-2 rounded-lg  text-left my-4 mx-4 md:mx-36">
+            <table className="w-full">
+              <thead>
+                <tr>
+                  <th>menuId</th>
+                  <th>userId</th>
+                  <th>name</th>
+                </tr>
+              </thead>
+              <tbody className="font-light">
+                {rawData.map((item,idx) =>
+                  <tr key={idx}>
+                    <th className="font-normal">{item.menuId.toString()}</th>
+                    <th className="font-normal">{item.roomId.toString()}</th>
+                    <th className="font-normal">{item.name}</th>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+
+        {/* <div className=" bg-[#6E7B43] mb-18 min-h-screen">
           <div className="pt-8 py-4">
             <Title text="Sejarah Pesanan" />
           </div>
@@ -79,12 +112,12 @@ const id = path.split("/")[2];
                   return (
                     <div key={idx}>
                       {/* <Sejarah date={data.date} time="pagi" img={data.img} title={data.name} desc={data.description} /> */}
-                    </div>
+                    {/* </div>
                   )
                 })}
-            </div>
-          </div>
-        </div>
+            </div> */}
+          </div> 
+        </div> 
   </>
   )
 }

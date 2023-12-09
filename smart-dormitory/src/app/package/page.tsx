@@ -68,7 +68,7 @@ const Package = () => {
   return (
     <>
           <Back/>
-          <div className="bg-cover bg-[url('/images/kuota_bg.png')] h-full w-full">
+          <div className="bg-cover bg-[url('/images/kuota_bg.png')] min-h-screen w-full">
 
             
             <div className="pt-12">
@@ -84,7 +84,6 @@ const Package = () => {
                 )
               })}
             </div>
-            <div className="h-screen"></div>
 
           </div>
     </>
