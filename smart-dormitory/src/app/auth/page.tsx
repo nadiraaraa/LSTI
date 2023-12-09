@@ -3,7 +3,6 @@
 import React, { useState, useLayoutEffect, ChangeEvent } from "react";
 import axios from "axios";
 import Cookies from "universal-cookie";
-import { env } from "process";
 
 interface DataMasuk {
   username: string;
@@ -30,7 +29,7 @@ const Masuk = () => {
     e.preventDefault();
     // setLoadingSubmit(true);
     try {
-      const res = await axios.post("/api/auth", data);
+      const res = await axios.post("https://smart-dormitory-backend-service.000webhostapp.com/auth", data);
       console.log(res.data);
       if (res.data.status === 200) {
         console.log(res.data);
@@ -84,7 +83,7 @@ const Masuk = () => {
     <>
     <div className="bg-[#FFFCDB] w-screen h-screen">
       <div className="flex justify-center items-center pt-24 ">
-        <img src="/images/logo.png" className="w-36"></img>
+        <img alt="" src="/images/logo.png" className="w-36"></img>
       </div>
       <p className="font-bold text-xl text-center">Log In to Smart Dormitory</p>
 

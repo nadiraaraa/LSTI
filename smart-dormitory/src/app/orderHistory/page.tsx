@@ -1,6 +1,56 @@
+"use client";
 import { Header, Sidebar, Title} from "../components"
+import {useState, useEffect, ChangeEvent, useLayoutEffect} from 'react';
+import Cookie from "universal-cookie";
+import axios from "axios";
+
+interface OrderIn{
+  id : Number,
+  userId : Number,
+  name: String,
+  roomId : Number,
+  phone : String,
+  menuId : Number
+}
+
+interface Form{
+  date: Date | undefined,
+  category: String
+}
 
 const Pesan = () => {
+  const [orders, setOrders] = useState<OrderIn[]>([]);
+  const [form, setForm] = useState<Form>({
+    date: undefined,
+    category : "pagi"
+  });
+
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`/api/order?date=${form.date}&category=${form.category}`, {});
+        setOrders(res.data);
+      } catch (err) {
+        // toast.error("Error fetching data");
+        console.log(err);
+      } finally {
+        // setLoading(false);
+      }
+    };
+    
+  const handleInputChange = async (
+    event: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = event.target;
+    setForm({ ...form, [name]: value });    
+
+      fetchData();
+  };
+
+  useLayoutEffect(() => {
+    fetchData();
+  }, []);
+
+  
   return (
     <>
         <div className=" bg-[#6E7B43] mb-18 min-h-screen">
@@ -11,12 +61,12 @@ const Pesan = () => {
             <div className="">
                 <input type="date" id="date"
                 className="border border-[#DE521E] rounded-md w-full"
-                required></input>
+                required onChange={handleInputChange}></input>
               </div>
               <div className="">
                 <select id="kategori"
                 className="border border-[#DE521E] rounded-md w-full"
-                required>
+                required onChange={handleInputChange}>
                 <option value="pagi" className=" text-sm">Pagi</option>
                 <option value="malam" className=" text-sm">Malam</option>
                 </select>
@@ -36,7 +86,17 @@ const Pesan = () => {
                 </tr>
                 <tr>
                   <th className="pr-3">Nomor Kamar</th>
-                  <th className="font-normal">Nomor Kamar ABC</th>
+                  <th className="font-normal">
+            {orders.map((item, idx) =>
+              {
+                return (
+                  <div key={idx}>
+                    <span>{item.roomId.toString()}&nbsp;</span>
+                  </div>
+                )
+              })}
+            
+                 </th>
                 </tr>
               </tbody>
             </table>
